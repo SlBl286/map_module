@@ -1,9 +1,9 @@
 // ignore_for_file: must_be_immutable, avoid_unnecessary_containers
 
 import 'package:flutter/material.dart';
-import 'package:flutter_app/app/constants/layer_id.dart';
-import 'package:flutter_app/bootstrap/helpers.dart';
-import 'package:flutter_app/config/app_theme.dart';
+import 'package:map_module/app/constants/layer_id.dart';
+import 'package:map_module/bootstrap/helpers.dart';
+import 'package:map_module/config/app_theme.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:intl/intl.dart';
 import "package:latlong2/latlong.dart";

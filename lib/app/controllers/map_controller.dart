@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:flutter_app/app/models/feature.dart';
-import 'package:flutter_app/app/networking/api_service.dart';
+import 'package:map_module/app/models/feature.dart';
+import 'package:map_module/app/networking/api_service.dart';
 import 'package:flutter_map/flutter_map.dart';
 
 import 'controller.dart';
@@ -14,8 +14,8 @@ class MapPageController extends Controller {
   }
 
   Future<List<Feature>> loadGeoJson(int layerId, {String? keySearch}) async {
-    var response =
-        await _apiService.layerGetgeoJsonForLayer(layerId, keySearch: keySearch);
+    var response = await _apiService.layerGetgeoJsonForLayer(layerId,
+        keySearch: keySearch);
     if (response.data != null && response.status != "ERROR") {
       // log(response.data.toString());
       for (var item in (response.data!['features'] as List)) {

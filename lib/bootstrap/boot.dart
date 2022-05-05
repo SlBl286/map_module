@@ -1,4 +1,4 @@
-import 'package:flutter_app/config/app_localization.dart';
+import 'package:map_module/config/app_localization.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 Future<void> boot() async {
@@ -8,7 +8,7 @@ Future<void> boot() async {
       languageCode: languageCode,
       languagesList: languagesList,
       assetsDirectory: assetsDirectory,
-      valuesAsMap: valuesAsMap
-  );
+      valuesAsMap: valuesAsMap);
+
   /// ...
 }

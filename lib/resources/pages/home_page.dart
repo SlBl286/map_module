@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/app/controllers/home_controller.dart';
+import 'package:map_module/app/controllers/home_controller.dart';
 
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:nylo_framework/theme/helper/ny_theme.dart';

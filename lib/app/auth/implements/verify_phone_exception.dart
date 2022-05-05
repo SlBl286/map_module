@@ -1,0 +1,5 @@
+
+
+class PhoneNumberNotVerifedException implements Exception {
+
+}

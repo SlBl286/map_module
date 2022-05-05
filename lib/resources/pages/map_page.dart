@@ -3,24 +3,25 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/app/constants/layer_id.dart';
-import 'package:flutter_app/app/constants/map_const.dart';
-import 'package:flutter_app/app/controllers/map_controller.dart';
-import 'package:flutter_app/app/utils/map.dart';
-import 'package:flutter_app/bootstrap/helpers.dart';
-import 'package:flutter_app/resources/widgets/cot_dien_marker.dart';
-import 'package:flutter_app/resources/widgets/diem_do_marker.dart';
-import 'package:flutter_app/resources/widgets/may_bien_ap_marker.dart';
-import 'package:flutter_app/resources/widgets/scada_marker.dart';
-import 'package:flutter_app/resources/widgets/su_co.dart';
-import 'package:flutter_app/resources/widgets/thiet_bi_do_dem_widget.dart';
-import 'package:flutter_app/resources/widgets/thiet_bi_dong_cat_marker.dart';
-import 'package:flutter_app/resources/widgets/tram_bien_ap_marker.dart';
+import 'package:map_module/app/constants/layer_id.dart';
+import 'package:map_module/app/constants/map_const.dart';
+import 'package:map_module/app/controllers/map_controller.dart';
+import 'package:map_module/app/utils/map.dart';
+import 'package:map_module/bootstrap/helpers.dart';
+import 'package:map_module/resources/widgets/cot_dien_marker.dart';
+import 'package:map_module/resources/widgets/diem_do_marker.dart';
+import 'package:map_module/resources/widgets/may_bien_ap_marker.dart';
+import 'package:map_module/resources/widgets/scada_marker.dart';
+import 'package:map_module/resources/widgets/su_co.dart';
+import 'package:map_module/resources/widgets/thiet_bi_do_dem_widget.dart';
+import 'package:map_module/resources/widgets/thiet_bi_dong_cat_marker.dart';
+import 'package:map_module/resources/widgets/tram_bien_ap_marker.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'dart:math' as math;
 import "package:latlong2/latlong.dart";
+
 class MapPage extends NyStatefulWidget {
   static const route = "/map";
   final MapPageController controller = MapPageController();
@@ -757,9 +758,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                 zoom: 10.0,
                 maxZoom: 18.5,
                 minZoom: 1,
-                plugins: [
-          
-                ],
+                plugins: [],
               ),
               layers: [
                 TileLayerOptions(

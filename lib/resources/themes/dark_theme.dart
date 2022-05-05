@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/config/app_font.dart';
-import 'package:flutter_app/resources/themes/styles/base_styles.dart';
-import 'package:flutter_app/resources/themes/text_theme/default_text_theme.dart';
+import 'package:map_module/config/app_font.dart';
+import 'package:map_module/resources/themes/styles/base_styles.dart';
+import 'package:map_module/resources/themes/text_theme/default_text_theme.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 
 /*
@@ -14,8 +14,8 @@ import 'package:nylo_framework/nylo_framework.dart';
 */
 
 ThemeData darkTheme(BaseColorStyles darkColors) {
-  TextTheme darkTheme =
-      getAppTextTheme(appFont, defaultTextTheme.merge(_darkTextTheme(darkColors)));
+  TextTheme darkTheme = getAppTextTheme(
+      appFont, defaultTextTheme.merge(_darkTextTheme(darkColors)));
   return ThemeData(
     primaryColor: darkColors.primaryContent,
     backgroundColor: darkColors.background,

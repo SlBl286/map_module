@@ -1,4 +1,5 @@
-import 'package:flutter_app/resources/pages/home_page.dart';
+import 'package:map_module/resources/pages/home_page.dart';
+import 'package:map_module/resources/pages/map_page.dart';
 import 'package:nylo_framework/nylo_framework.dart';
 import 'package:page_transition/page_transition.dart';
 
@@ -14,9 +15,9 @@ import 'package:page_transition/page_transition.dart';
 */
 
 buildRouter() => nyRoutes((router) {
-      router.route("/", (context) => HomePage());
+      router.route("/", (context) => MapPage());
 
       // Add your routes here
-      router.route(HomePage.route, (context) => HomePage(),
+      router.route(HomePage.route, (context) => MapPage(),
           transition: PageTransitionType.leftToRight);
     });

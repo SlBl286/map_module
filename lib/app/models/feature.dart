@@ -1,4 +1,4 @@
-import 'package:flutter_app/app/models/geo_json.dart';
+import 'package:map_module/app/models/geo_json.dart';
 
 class Feature {
   final String type;
@@ -33,7 +33,7 @@ class Feature {
               ? GeoJsonLineString.fromJson(json['geometry'])
               : null
           : null,
-      properties: json['properties'] ,
+      properties: json['properties'],
     );
   }
 }

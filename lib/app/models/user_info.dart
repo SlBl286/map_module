@@ -1,6 +1,5 @@
-import 'package:flutter_app/app/models/rest_base.dart';
+import 'package:map_module/app/models/rest_base.dart';
 import 'package:json_annotation/json_annotation.dart';
-
 
 part 'user_info.g.dart';
 

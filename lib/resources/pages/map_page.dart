@@ -43,6 +43,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
   @override
   widgetDidLoad() async {
     if (widget.data() != null) {
+        print(widget.data());
       setState(() {
         _dto = widget.data();
       });

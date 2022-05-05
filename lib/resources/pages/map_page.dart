@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:map_module/app/constants/layer_id.dart';
 import 'package:map_module/app/constants/map_const.dart';
 import 'package:map_module/app/controllers/map_controller.dart';
+import 'package:map_module/app/dto/map_page_dto.dart';
 import 'package:map_module/app/utils/map.dart';
 import 'package:map_module/bootstrap/helpers.dart';
 import 'package:map_module/resources/widgets/cot_dien_marker.dart';
@@ -36,24 +37,14 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
   List<Marker> _markers = [];
   List<Polyline> _polylines = [];
   List<Polygon> _polygons = [];
-  String? _featureType;
-  String? _title;
-  int? _layerId;
-  int? featureId;
-  LatLng? featureLatLng;
+  MapPageDto _dto = MapPageDto();
   late MapController mapController;
   bool _routeFromDslop = false;
   @override
   widgetDidLoad() async {
     if (widget.data() != null) {
       setState(() {
-        _title = widget.data()[0];
-        _layerId = widget.data()[1];
-        if (widget.data().length > 2) {
-          featureId = (widget.data()[2] as double).toInt();
-          featureLatLng = widget.data()[3];
-          _routeFromDslop = true;
-        }
+        _dto = widget.data();
       });
     }
   }
@@ -148,10 +139,10 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
   void _onMapCreated(MapController controller) async {
     mapController = controller;
 
-    await widget.controller.loadGeoJson(_layerId!);
+    await widget.controller.loadGeoJson(_dto.layerId!);
     setState(() {
       for (var item in widget.controller.features) {
-        switch (_layerId) {
+        switch (_dto.layerId) {
           case LayerEnum.thietBiDongCatCaoThe:
             if (item.geometryPoint != null) {
               _markers.add(
@@ -168,7 +159,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                         if (kDebugMode) {
                           print(item.properties);
                         }
-                        MapUtils.showInfor(context, _layerId!, item.properties!,
+                        MapUtils.showInfor(context, _dto.layerId!, item.properties!,
                             item.geometryPoint!.coordinates);
                       }
                     },
@@ -195,7 +186,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                         if (kDebugMode) {
                           print(item.properties);
                         }
-                        MapUtils.showInfor(context, _layerId!, item.properties!,
+                        MapUtils.showInfor(context, _dto.layerId!, item.properties!,
                             item.geometryPoint!.coordinates);
                       }
                     },
@@ -222,7 +213,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                         if (kDebugMode) {
                           print(item.properties);
                         }
-                        MapUtils.showInfor(context, _layerId!, item.properties!,
+                        MapUtils.showInfor(context, _dto.layerId!, item.properties!,
                             item.geometryPoint!.coordinates);
                       }
                     },
@@ -248,7 +239,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                         if (kDebugMode) {
                           print(item.properties);
                         }
-                        MapUtils.showInfor(context, _layerId!, item.properties!,
+                        MapUtils.showInfor(context, _dto.layerId!, item.properties!,
                             item.geometryPoint!.coordinates);
                       }
                     },
@@ -274,7 +265,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                         if (kDebugMode) {
                           print(item.properties);
                         }
-                        MapUtils.showInfor(context, _layerId!, item.properties!,
+                        MapUtils.showInfor(context, _dto.layerId!, item.properties!,
                             item.geometryPoint!.coordinates);
                       }
                     },
@@ -300,7 +291,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                         if (kDebugMode) {
                           print(item.properties);
                         }
-                        MapUtils.showInfor(context, _layerId!, item.properties!,
+                        MapUtils.showInfor(context, _dto.layerId!, item.properties!,
                             item.geometryPoint!.coordinates);
                       }
                     },
@@ -350,7 +341,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                           }
                           MapUtils.showInfor(
                               context,
-                              _layerId!,
+                              _dto.layerId!,
                               item.properties!,
                               item.geometryPoint!.coordinates);
                         }
@@ -389,7 +380,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                           }
                           MapUtils.showInfor(
                               context,
-                              _layerId!,
+                              _dto.layerId!,
                               item.properties!,
                               item.geometryPoint!.coordinates);
                         }
@@ -472,7 +463,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                           }
                           MapUtils.showInfor(
                               context,
-                              _layerId!,
+                              _dto.layerId!,
                               item.properties!,
                               item.geometryPoint!.coordinates);
                         }
@@ -500,7 +491,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                           }
                           MapUtils.showInfor(
                               context,
-                              _layerId!,
+                              _dto.layerId!,
                               item.properties!,
                               item.geometryPoint!.coordinates);
                         }
@@ -528,7 +519,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                           }
                           MapUtils.showInfor(
                               context,
-                              _layerId!,
+                              _dto.layerId!,
                               item.properties!,
                               item.geometryPoint!.coordinates);
                         }
@@ -556,7 +547,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                           }
                           MapUtils.showInfor(
                               context,
-                              _layerId!,
+                              _dto.layerId!,
                               item.properties!,
                               item.geometryPoint!.coordinates);
                         }
@@ -585,7 +576,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                           }
                           MapUtils.showInfor(
                               context,
-                              _layerId!,
+                              _dto.layerId!,
                               item.properties!,
                               item.geometryPoint!.coordinates);
                         }
@@ -611,7 +602,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                         if (kDebugMode) {
                           print(item.properties);
                         }
-                        MapUtils.showInfor(context, _layerId!, item.properties!,
+                        MapUtils.showInfor(context, _dto.layerId!, item.properties!,
                             item.geometryPoint!.coordinates);
                       }
                     },
@@ -650,7 +641,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                           }
                           MapUtils.showInfor(
                               context,
-                              _layerId!,
+                              _dto.layerId!,
                               item.properties!,
                               item.geometryPoint!.coordinates);
                         }
@@ -662,15 +653,15 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
             break;
           default:
             if (item.geometryLineString != null) {
-              debugPrint(_layerId.toString());
+              debugPrint(_dto.layerId.toString());
               debugPrint("LineString");
             }
             if (item.geometryPoint != null) {
-              debugPrint(_layerId.toString());
+              debugPrint(_dto.layerId.toString());
               debugPrint("Point");
             }
             if (item.geometryPylygon != null) {
-              debugPrint(_layerId.toString());
+              debugPrint(_dto.layerId.toString());
               debugPrint("Polygon");
             }
             break;
@@ -683,7 +674,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
             this,
             mapController,
             widget.controller.features
-                .where((element) => element.id == featureId)
+                .where((element) => element.id == _dto.featureId)
                 .first
                 .geometryPoint!
                 .coordinates,
@@ -692,13 +683,13 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
       Future.delayed(Duration(milliseconds: 1000), () {
         MapUtils.showInfor(
           context,
-          _layerId!,
+          _dto.layerId!,
           widget.controller.features
-              .where((element) => element.id == featureId)
+              .where((element) => element.id == _dto.featureId)
               .first
               .properties!,
           widget.controller.features
-              .where((element) => element.id == featureId)
+              .where((element) => element.id == _dto.featureId)
               .first
               .geometryPoint!
               .coordinates,
@@ -733,7 +724,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
             ),
             FittedBox(
               child: Text(
-                "Bản đồ " + (_title ?? "").toLowerCase(),
+                "Bản đồ " + (_dto.title ?? "").toLowerCase(),
                 style: const TextStyle(fontSize: 14),
               ),
             ),

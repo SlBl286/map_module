@@ -39,11 +39,11 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
   List<Polygon> _polygons = [];
   MapPageDto _dto = MapPageDto();
   late MapController mapController;
-  bool _routeFromDslop = false;
+
   @override
   widgetDidLoad() async {
     if (widget.data() != null) {
-        print(widget.data());
+      print(widget.data());
       setState(() {
         _dto = widget.data();
       });
@@ -160,8 +160,8 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                         if (kDebugMode) {
                           print(item.properties);
                         }
-                        MapUtils.showInfor(context, _dto.layerId!, item.properties!,
-                            item.geometryPoint!.coordinates);
+                        MapUtils.showInfor(context, _dto.layerId!,
+                            item.properties!, item.geometryPoint!.coordinates);
                       }
                     },
                     child: ThietBiDongCatWidgetMarker(
@@ -187,8 +187,8 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                         if (kDebugMode) {
                           print(item.properties);
                         }
-                        MapUtils.showInfor(context, _dto.layerId!, item.properties!,
-                            item.geometryPoint!.coordinates);
+                        MapUtils.showInfor(context, _dto.layerId!,
+                            item.properties!, item.geometryPoint!.coordinates);
                       }
                     },
                     child:
@@ -214,8 +214,8 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                         if (kDebugMode) {
                           print(item.properties);
                         }
-                        MapUtils.showInfor(context, _dto.layerId!, item.properties!,
-                            item.geometryPoint!.coordinates);
+                        MapUtils.showInfor(context, _dto.layerId!,
+                            item.properties!, item.geometryPoint!.coordinates);
                       }
                     },
                     child: MayBienApWidgetMarker(attributes: item.properties!),
@@ -240,8 +240,8 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                         if (kDebugMode) {
                           print(item.properties);
                         }
-                        MapUtils.showInfor(context, _dto.layerId!, item.properties!,
-                            item.geometryPoint!.coordinates);
+                        MapUtils.showInfor(context, _dto.layerId!,
+                            item.properties!, item.geometryPoint!.coordinates);
                       }
                     },
                     child: TramBienApWidgetMarker(attributes: item.properties!),
@@ -266,8 +266,8 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                         if (kDebugMode) {
                           print(item.properties);
                         }
-                        MapUtils.showInfor(context, _dto.layerId!, item.properties!,
-                            item.geometryPoint!.coordinates);
+                        MapUtils.showInfor(context, _dto.layerId!,
+                            item.properties!, item.geometryPoint!.coordinates);
                       }
                     },
                     child: TramBienApWidgetMarker(attributes: item.properties!),
@@ -292,8 +292,8 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                         if (kDebugMode) {
                           print(item.properties);
                         }
-                        MapUtils.showInfor(context, _dto.layerId!, item.properties!,
-                            item.geometryPoint!.coordinates);
+                        MapUtils.showInfor(context, _dto.layerId!,
+                            item.properties!, item.geometryPoint!.coordinates);
                       }
                     },
                     child: CotDienWidgetMarker(attributes: item.properties!),
@@ -603,8 +603,8 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                         if (kDebugMode) {
                           print(item.properties);
                         }
-                        MapUtils.showInfor(context, _dto.layerId!, item.properties!,
-                            item.geometryPoint!.coordinates);
+                        MapUtils.showInfor(context, _dto.layerId!,
+                            item.properties!, item.geometryPoint!.coordinates);
                       }
                     },
                     child: SuCoWidgetMarker(attributes: item.properties!),
@@ -708,7 +708,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
         leading: IconButton(
           onPressed: () {
             pop();
-            if (_routeFromDslop) pop();
+            if (_dto.routeFromDsLop) pop();
           },
           icon: const Icon(Icons.arrow_back_ios),
         ),

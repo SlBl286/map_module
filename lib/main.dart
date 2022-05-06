@@ -8,7 +8,6 @@ import 'bootstrap/boot.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Nylo nylo = await Nylo.init(router: buildRouter(), setup: boot);
-
   runApp(
     AppBuild(
       navigatorKey: nylo.router!.navigatorKey,

@@ -669,7 +669,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
         }
       }
     });
-    if (_dto.featureId != null) {
+    if (_dto.featureId != null && _markers.isNotEmpty) {
       Future.delayed(Duration(milliseconds: 500), () {
         MapUtils.animatedMapMove(
             this,

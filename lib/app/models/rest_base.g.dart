@@ -92,7 +92,7 @@ Map<String, dynamic> _$RestListDataToJson(RestListData instance) =>
 RestMapData _$RestMapDataFromJson(Map<String, dynamic> json) {
   return RestMapData(
     status: json['status'] as String?,
-    data: jsonDecode(json['data']) as Map<String, dynamic>?,
+    data:json['data'] as Map<String, dynamic>?,
     total: json['recordsTotal'] as int?,
     errors: (json['errors'] as List<dynamic>?)
         ?.map((e) => RestErrorDetail.fromJson(e as Map<String, dynamic>))

@@ -3,7 +3,7 @@ class LayerEnum {
   static const int thietBiDoDemCaoThe = 2;
   static const int tuBucaoThe = 3;
   static const int mayBienApCaoThe = 4;
-  static const int tramBienApCaoThe = 5;
+  static const int tramBienApCaoThe = 360;
   static const int dauNoiCaoThe = 6;
   static const int cotDienCaoThe = 7;
   static const int duongDayCaoThe = 8;

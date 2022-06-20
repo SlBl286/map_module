@@ -162,17 +162,11 @@ class TramBienApPopup extends StatelessWidget {
                     child: Image.asset(
                       attributes['CONGSUAT'] == null
                           ? getImageAsset('map/tram_bien_ap/other.png')
-                          : 
-                                      (attributes['CONGSUAT'] as int) ==
-                                  110
+                          : (attributes['CONGSUAT'] as int) == 110
                               ? getImageAsset('map/tram_bien_ap/110.png')
-                              : 
-                                          (attributes['CONGSUAT'] as int) ==
-                                      220
+                              : (attributes['CONGSUAT'] as int) == 220
                                   ? getImageAsset('map/tram_bien_ap/220.png')
-                                  : (attributes['CONGSUAT']
-                                              as int) ==
-                                          500
+                                  : (attributes['CONGSUAT'] as int) == 500
                                       ? getImageAsset(
                                           'map/tram_bien_ap/500.png')
                                       : getImageAsset(
@@ -254,7 +248,7 @@ class TramBienApPopup extends StatelessWidget {
                             size: 20,
                           ),
                           Text(
-                            ' : ${attributes["CONGSUAT"] != null ? attributes["CONGSUAT"] + "kV" : "không có"}',
+                            ' : ${attributes["CONGSUAT"] != null ? '${attributes["CONGSUAT"]}' + "kV" : "không có"}',
                             style: const TextStyle(fontSize: 12),
                           ),
                         ],
@@ -599,13 +593,9 @@ class CotDienPopup extends StatelessWidget {
                           ? getImageAsset('map/cot_dien/other.png')
                           : (attributes['CONGSUAT'] as int) == 110
                               ? getImageAsset('map/cot_dien/110.png')
-                              :
-                                          (attributes['CONGSUAT'] as int) ==
-                                      220
+                              : (attributes['CONGSUAT'] as int) == 220
                                   ? getImageAsset('map/cot_dien/220.png')
-                                  : (attributes['CONGSUAT']
-                                              as int) ==
-                                          500
+                                  : (attributes['CONGSUAT'] as int) == 500
                                       ? getImageAsset('map/cot_dien/500.png')
                                       : getImageAsset('map/cot_dien/other.png'),
                       width: 80,
@@ -681,7 +671,7 @@ class CotDienPopup extends StatelessWidget {
                             size: 20,
                           ),
                           Text(
-                            ' : ${attributes["CONGSUAT"] != null ? attributes["CONGSUAT"] + "kV" : "không có"}',
+                            ' : ${attributes["CONGSUAT"] != null ? '${attributes["CONGSUAT"]}' + "kV" : "không có"}',
                             style: const TextStyle(fontSize: 12),
                           ),
                         ],
@@ -880,7 +870,7 @@ class ThietBiDongCatPopup extends StatelessWidget {
                             size: 20,
                           ),
                           Text(
-                            ' : ${attributes["CONGSUAT"] != null ? attributes["CONGSUAT"] + "kV" : "không có"}',
+                            ' : ${attributes["CONGSUAT"] != null ? '${attributes["CONGSUAT"]}' + "kV" : "không có"}',
                             style: const TextStyle(fontSize: 12),
                           ),
                         ],

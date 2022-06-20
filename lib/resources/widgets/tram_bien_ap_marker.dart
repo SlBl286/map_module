@@ -16,17 +16,24 @@ class TramBienApWidgetMarker extends StatelessWidget {
             (attributes['TENTRAMBIENAP'] != null
                 ? attributes['TENTRAMBIENAP'] as String
                 : (attributes['OBJECTID'] as int).toString()),
-            style:const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+            style: const TextStyle(
+                color: Colors.black, fontWeight: FontWeight.bold),
           ),
           Image.asset(
             attributes['CONGSUAT'] == null
                 ? getImageAsset('map/tram_bien_ap/other.png')
-                : (attributes['CONGSUAT'] as int) == 110
+                : (attributes['CONGSUAT'] is int
+                            ? attributes['CONGSUAT'] as int
+                            : int.tryParse(attributes['CONGSUAT'] as String)) ==
+                        110
                     ? getImageAsset('map/tram_bien_ap/110.png')
-                    : (attributes['CONGSUAT'] as int) == 220
+                    : (attributes['CONGSUAT'] is int
+                            ? attributes['CONGSUAT'] as int
+                            : int.tryParse(attributes['CONGSUAT'] as String)) == 220
                         ? getImageAsset('map/tram_bien_ap/220.png')
-                        : (attributes['CONGSUAT'] as int) ==
-                                500
+                        : (attributes['CONGSUAT'] is int
+                            ? attributes['CONGSUAT'] as int
+                            : int.tryParse(attributes['CONGSUAT'] as String)) == 500
                             ? getImageAsset('map/tram_bien_ap/500.png')
                             : getImageAsset('map/tram_bien_ap/other.png'),
             width: 50,

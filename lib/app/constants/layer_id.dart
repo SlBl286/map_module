@@ -1,33 +1,59 @@
 class LayerEnum {
-  static const int thietBiDongCatCaoThe = 1;
-  static const int thietBiDoDemCaoThe = 2;
-  static const int tuBucaoThe = 3;
-  static const int mayBienApCaoThe = 4;
+  //CAO THE
+  static const int thietBiDongCatCaoThe = 357;
+  static const int thietBiDoDemCaoThe = 358;
+  static const int tuBucaoThe = 359;
+  static const int mayBienApCaoThe = 360;
   static const int tramBienApCaoThe = 361;
-  static const int dauNoiCaoThe = 6;
-  static const int cotDienCaoThe = 7;
-  static const int duongDayCaoThe = 8;
-  static const int nenTramCaoThe = 9;
-  static const int muongCapCaoThe = 10;
-  static const int tramBienApTrungThe = 14;
-  static const int nenTramTrungThe = 19;
-  static const int scadaTrungThe = 21;
-  static const int dayDanCaoThe = 41;
-  static const int viTriSuCo = 35;
-  static const int diemKhachHang = 66;
+  static const int dauNoiCaoThe = 362;
+  static const int cotDienCaoThe = 363;
+  static const int duongDayCaoThe = 364;
+  static const int nenTramCaoThe = 365;
+  static const int muongCapCaoThe = 366;
+  static const int dayDanCaoThe = 367;
+  // TRUNG THE
+  static const int thietBiDongCatTrungThe = 368;
+  static const int thietBiDoDemTrungThe = 369;
+  static const int tuBucaoTrungThe = 370;
+  static const int tramBienApTrungThe = 371;
+  static const int diemDanhGioiTrungThe = 372;
+  static const int dauNoiTrungThe = 373;
+  static const int cotDienTrungThe = 374;
+  static const int nenTramTrungThe = 375;
+  static const int muongCapTrungThe = 376;
+  static const int scadaTrungThe = 377;
+  static const int tuRMUTrungThe = 378;
+
+  // HA THE
+  static const int diemDoHaThe = 379;
+  static const int thietBiDongCatHaThe = 380;
+  static const int thietBiDoDemHaThe = 381;
+  static const int tuBuHaThe = 382;
+  static const int congToKhachHangHaThe = 383;
+  static const int diemDanGioiHaThe = 384;
+  static const int dauNoiHaThe = 385;
+  static const int cotDienHaThe = 386;
+  static const int duongDayHaThe = 387;
+  static const int tuPhanPhoiHaThe = 388;
+  static const int mayBienApHaThe = 389;
+
+  // SU CO
+  static const int viTriSuCo = 227;
+
+  // SU DUNG DIEN
+  static const int diemSuDungDien = 331;
+  static const int diemKinhDoanhDien = 332;
+  static const int vungCapDien = 333;
+
+  // HANH LANG AN TOAN
+  static const int viTriViPham = 329;
+  static const int hanhLangAnToan = 330;
+
+
   static const int diemChuyenMachBTS = 32;
   static const int tuyenCapNgamBTS = 33;
   static const int tuyenCapTreoBTS = 34;
-  static const int tuPhanPhoiHaThe = 31;
-  static const int duongDayHaThe = 30;
-  static const int diemDoHaThe = 22;
-  static const int thietBiDongCatHaThe = 23;
-  static const int thietBiDoDemHaThe = 24;
-  static const int tuBucaoHaThe = 25;
-  static const int congToKhachHangHaThe = 26;
   static const int diemRanhGioiHaThe = 27;
-  static const int dauNoiHaThe = 28;
-  static const int cotDienHaThe = 29;
   static const int duongDayTrungThe = 18;
 }
 
@@ -35,7 +61,7 @@ class GroupLayerEnum {
   static const int luoiDienCaoTheId = 1;
   static const int luoiDienTrungtheId = 2;
   static const int luoiDienHaTheId = 3;
-  static const int suCoId = 5;
+  static const int suCoId = 127;
   static const int heThongVienThong = 4;
   static const int khachHangId = -1;
 }

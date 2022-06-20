@@ -624,7 +624,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
               );
             }
             break;
-          case LayerEnum.diemKhachHang:
+          case LayerEnum.diemSuDungDien:
             if (item.geometryPoint != null) {
               _markers.add(
                 Marker(

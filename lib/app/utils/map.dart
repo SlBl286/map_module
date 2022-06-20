@@ -198,7 +198,7 @@ class TramBienApPopup extends StatelessWidget {
                           SizedBox(
                             width: MediaQuery.of(context).size.width - 150,
                             child: Text(
-                              ' : ${StringHelper.isNullOrEmpty(attributes["MATRAMBIENAP"] as String) != true ? attributes["MATRAMBIENAP"] : "không có"}',
+                              ' : ${StringHelper.isNullOrEmpty(attributes["MATRAMBIENAP"]) != true ? attributes["MATRAMBIENAP"] : "không có"}',
                               style: const TextStyle(
                                   fontSize: 12,
                                   overflow: TextOverflow.ellipsis),

@@ -19,23 +19,24 @@ class LayerEnum {
   static const int diemDanhGioiTrungThe = 372;
   static const int dauNoiTrungThe = 373;
   static const int cotDienTrungThe = 374;
-  static const int nenTramTrungThe = 375;
-  static const int muongCapTrungThe = 376;
-  static const int scadaTrungThe = 377;
-  static const int tuRMUTrungThe = 378;
+  static const int doangDayTrungThe = 375;
+  static const int nenTramTrungThe = 376;
+  static const int muongCapTrungThe = 377;
+  static const int scadaTrungThe = 378;
+  static const int tuRMUTrungThe = 379;
 
   // HA THE
-  static const int diemDoHaThe = 379;
-  static const int thietBiDongCatHaThe = 380;
-  static const int thietBiDoDemHaThe = 381;
-  static const int tuBuHaThe = 382;
-  static const int congToKhachHangHaThe = 383;
-  static const int diemDanGioiHaThe = 384;
-  static const int dauNoiHaThe = 385;
-  static const int cotDienHaThe = 386;
-  static const int duongDayHaThe = 387;
+  static const int diemDoHaThe = 380;
+  static const int thietBiDongCatHaThe = 381;
+  static const int thietBiDoDemHaThe = 382;
+  static const int tuBuHaThe = 383;
+  static const int congToKhachHangHaThe = 384;
+  static const int diemDanGioiHaThe = 385;
+  static const int dauNoiHaThe = 386;
+  static const int cotDienHaThe = 387;
+  static const int duongDayHaThe = 388;
   static const int tuPhanPhoiHaThe = 388;
-  static const int mayBienApHaThe = 389;
+  static const int mayBienApHaThe = 390;
 
   // SU CO
   static const int viTriSuCo = 227;

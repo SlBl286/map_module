@@ -502,6 +502,36 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
               );
             }
             break;
+
+          case LayerEnum.thietBiDongCatTrungThe:
+            if (item.geometryPoint != null) {
+              _markers.add(
+                Marker(
+                  rotate: true,
+                  width: 150.0,
+                  height: 40.0,
+                  point: item.geometryPoint!.coordinates,
+                  builder: (ctx) => GestureDetector(
+                      onTap: () async {
+                        await MapUtils.animatedMapMove(this, mapController,
+                            item.geometryPoint!.coordinates, 17);
+                        if (item.properties != null) {
+                          if (kDebugMode) {
+                            print(item.properties);
+                          }
+                          MapUtils.showInfor(
+                              context,
+                              _dto.layerId!,
+                              item.properties!,
+                              item.geometryPoint!.coordinates);
+                        }
+                      },
+                      child: SuCoWidgetMarker(attributes: item.properties!)),
+                ),
+              );
+            }
+            break;
+
           case LayerEnum.thietBiDongCatHaThe:
             if (item.geometryPoint != null) {
               _markers.add(

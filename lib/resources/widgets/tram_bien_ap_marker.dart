@@ -21,11 +21,11 @@ class TramBienApWidgetMarker extends StatelessWidget {
           Image.asset(
             attributes['CONGSUAT'] == null
                 ? getImageAsset('map/tram_bien_ap/other.png')
-                : double.tryParse((attributes['CONGSUAT'] as String)) == 110
+                : (attributes['CONGSUAT'] as int) == 110
                     ? getImageAsset('map/tram_bien_ap/110.png')
-                    : double.tryParse((attributes['CONGSUAT'] as String)) == 220
+                    : (attributes['CONGSUAT'] as int) == 220
                         ? getImageAsset('map/tram_bien_ap/220.png')
-                        : double.tryParse((attributes['CONGSUAT'] as String)) ==
+                        : (attributes['CONGSUAT'] as int) ==
                                 500
                             ? getImageAsset('map/tram_bien_ap/500.png')
                             : getImageAsset('map/tram_bien_ap/other.png'),

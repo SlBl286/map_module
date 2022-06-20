@@ -19,17 +19,17 @@ class Feature {
       type: json['type'],
       id: json['id'] as int,
       geometryPoint: json['geometry'] != null
-          ? (json['geometry'] as Map)['type'] == 'Point'
+          ? (json['geometry'] as Map)['type'] == 'Point' && (json['geometry'] as Map)['coordinates'].length >0
               ? GeoJsonPoint.fromJson(json['geometry'])
               : null
           : null,
       geometryPylygon: json['geometry'] != null
-          ? json['geometry']['type'] == 'Polygon'
+          ? json['geometry']['type'] == 'Polygon'&& (json['geometry'] as Map)['coordinates'].length >0
               ? GeoJsonPylygon.fromJson(json['geometry'])
               : null
           : null,
       geometryLineString: json['geometry'] != null
-          ? json['geometry']['type'] == 'LineString'
+          ? json['geometry']['type'] == 'LineString'&& (json['geometry'] as Map)['coordinates'].length >0
               ? GeoJsonLineString.fromJson(json['geometry'])
               : null
           : null,

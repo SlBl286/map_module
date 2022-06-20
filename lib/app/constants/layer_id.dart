@@ -57,7 +57,65 @@ class LayerEnum {
   static const int diemRanhGioiHaThe = 27;
   static const int duongDayTrungThe = 18;
 }
+class LayerIdEnum{
+  //CAO THE
+  static const String thietBiDongCatCaoThe = 'thietBiDongCatCaoThe';
+  static const String thietBiDoDemCaoThe = 'thietBiDoDemCaoThe';
+  static const String tuBucaoThe = 'tuBucaoThe';
+  static const String mayBienApCaoThe = 'mayBienApCaoThe';
+  static const String tramBienApCaoThe = 'tramBienApCaoThe';
+  static const String dauNoiCaoThe =  'dauNoiCaoThe';
+  static const String cotDienCaoThe = 'cotDienCaoThe';
+  static const String duongDayCaoThe = 'duongDayCaoThe';
+  static const String nenTramCaoThe =  'nenTramCaoThe';
+  static const String muongCapCaoThe =  'muongCapCaoThe';
+  static const String dayDanCaoThe =  'dayDanCaoThe';
+  // TRUNG THE
+  static const String thietBiDongCatTrungThe =  'thietBiDongCatTrungThe';
+  static const String thietBiDoDemTrungThe = 'thietBiDoDemTrungThe';
+  static const String tuBucaoTrungThe = 'tuBucaoTrungThe';
+  static const String tramBienApTrungThe = 'tramBienApTrungThe';
+  static const String diemDanhGioiTrungThe =  'diemDanhGioiTrungThe';
+  static const String dauNoiTrungThe =    'dauNoiTrungThe'; 
+  static const String cotDienTrungThe =   'cotDienTrungThe';
+  static const String doangDayTrungThe =  'doangDayTrungThe';
+  static const String nenTramTrungThe =    'nenTramTrungThe';
+  static const String muongCapTrungThe =    'muongCapTrungThe';
+  static const String scadaTrungThe =  'scadaTrungThe';
+  static const String tuRMUTrungThe =  'tuRMUTrungThe';
 
+  // HA THE
+  static const String diemDoHaThe =  'diemDoHaThe';
+  static const String thietBiDongCatHaThe =  'thietBiDongCatHaThe';
+  static const String thietBiDoDemHaThe =  'thietBiDoDemHaThe';
+  static const String tuBuHaThe =  'tuBuHaThe';
+  static const String congToKhachHangHaThe = 'congToKhachHangHaThe';
+  static const String diemDanGioiHaThe =  'diemDanGioiHaThe';
+  static const String dauNoiHaThe =  'dauNoiHaThe';
+  static const String cotDienHaThe =  'cotDienHaThe';
+  static const String duongDayHaThe =  'duongDayHaThe';
+  static const String tuPhanPhoiHaThe =  'tuPhanPhoiHaThe';
+  static const String mayBienApHaThe =  'mayBienApHaThe';
+
+  // SU CO
+  static const String viTriSuCo =  'viTriSuCo';
+
+  // SU DUNG DIEN
+  static const String diemSuDungDien =  'diemSuDungDien';
+  static const String diemKinhDoanhDien =  'diemKinhDoanhDien';
+  static const String vungCapDien =  'vungCapDien';
+
+  // HANH LANG AN TOAN
+  static const String viTriViPham =  'viTriViPham';
+  static const String hanhLangAnToan =  'hanhLangAnToan';
+
+
+  static const int diemChuyenMachBTS = 32;
+  static const int tuyenCapNgamBTS = 33;
+  static const int tuyenCapTreoBTS = 34;
+  static const int diemRanhGioiHaThe = 27;
+  static const int duongDayTrungThe = 18;
+}
 class GroupLayerEnum {
   static const int luoiDienCaoTheId = 1;
   static const int luoiDienTrungtheId = 2;

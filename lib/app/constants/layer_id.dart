@@ -35,7 +35,7 @@ class LayerEnum {
   static const int dauNoiHaThe = 386;
   static const int cotDienHaThe = 387;
   static const int duongDayHaThe = 388;
-  static const int tuPhanPhoiHaThe = 388;
+  static const int tuPhanPhoiHaThe = 389;
   static const int mayBienApHaThe = 390;
 
   // SU CO

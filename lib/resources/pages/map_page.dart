@@ -313,7 +313,52 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
               );
             }
             break;
+          case LayerEnum.doangDayTrungThe:
+            if (item.geometryLineString != null) {
+              _polylines.add(
+                Polyline(
+                  points: item.geometryLineString!.coordinates,
+                  strokeWidth: 3,
+                  color: Colors.blueAccent,
+                ),
+              );
+            }
+            break;
           case LayerEnum.nenTramCaoThe:
+            if (item.geometryPylygon != null) {
+              _polygons.add(
+                Polygon(
+                    points: item.geometryPylygon!.coordinates.first,
+                    borderStrokeWidth: 2,
+                    color: Colors.blue.withAlpha(150),
+                    borderColor: Colors.grey),
+              );
+            }
+            break;
+          case LayerEnum.muongCapTrungThe:
+            if (item.geometryPylygon != null) {
+              _polygons.add(
+                Polygon(
+                    points: item.geometryPylygon!.coordinates.first,
+                    borderStrokeWidth: 2,
+                    color: Colors.blue.withAlpha(150),
+                    borderColor: Colors.grey),
+              );
+            }
+            break;
+          case LayerEnum.tuRMUTrungThe:
+            if (item.geometryPylygon != null) {
+              _polygons.add(
+                Polygon(
+                    points: item.geometryPylygon!.coordinates.first,
+                    borderStrokeWidth: 2,
+                    color: Colors.blue.withAlpha(150),
+                    borderColor: Colors.grey),
+              );
+            }
+            break;
+
+          case LayerEnum.tuPhanPhoiHaThe:
             if (item.geometryPylygon != null) {
               _polygons.add(
                 Polygon(
@@ -390,6 +435,36 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                 ),
               );
             }
+
+            break;
+          case LayerEnum.mayBienApHaThe:
+            if (item.geometryPoint != null) {
+              _markers.add(
+                Marker(
+                  rotate: true,
+                  width: 150.0,
+                  height: 40.0,
+                  point: item.geometryPoint!.coordinates,
+                  builder: (ctx) => GestureDetector(
+                      onTap: () async {
+                        await MapUtils.animatedMapMove(this, mapController,
+                            item.geometryPoint!.coordinates, 17);
+                        if (item.properties != null) {
+                          if (kDebugMode) {
+                            print(item.properties);
+                          }
+                          MapUtils.showInfor(
+                              context,
+                              _dto.layerId!,
+                              item.properties!,
+                              item.geometryPoint!.coordinates);
+                        }
+                      },
+                      child: SuCoWidgetMarker(attributes: item.properties!)),
+                ),
+              );
+            }
+
             break;
           case LayerEnum.dayDanCaoThe:
             if (item.geometryLineString != null) {
@@ -643,7 +718,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
               );
             }
             break;
-            case LayerEnum.cotDienTrungThe:
+          case LayerEnum.cotDienTrungThe:
             if (item.geometryPoint != null) {
               _markers.add(
                 Marker(

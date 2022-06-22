@@ -25,41 +25,9 @@ class MapUtils {
       context: context,
       backgroundColor: ThemeColor.get(context).background,
       builder: (context) => StatefulBuilder(builder: (context, innerSetState) {
-        switch (layerId) {
-          case LayerEnum.thietBiDongCatCaoThe:
-            return ThietBiDongCatPopup(attributes: attributes);
-          case LayerEnum.mayBienApCaoThe:
-            return MayBienApPopup(
-              attributes: attributes,
-            );
-          case LayerEnum.tramBienApCaoThe:
-            return TramBienApPopup(
-              attributes: attributes,
-            );
-          case LayerEnum.thietBiDoDemCaoThe:
-            return ThietBiDoDemPopup(attributes: attributes);
-          case LayerEnum.cotDienCaoThe:
-            return CotDienPopup(attributes: attributes);
-          case LayerEnum.viTriSuCo:
-            return SuCoPopup(
-              attributes: attributes,
-            );
-          case LayerEnum.scadaTrungThe:
-            return ScadaPopup(
-              attributes: attributes,
-            );
-          case LayerEnum.tramBienApTrungThe:
-            return TramBienApPopup(
-              attributes: attributes,
-            );
-          case LayerEnum.diemDoHaThe:
-            return DiemDoPopup(
-              attributes: attributes,
-            );
-
-          default:
-            return Container();
-        }
+        
+            return MarkerPopup(attributes: attributes,);
+        
       }),
     );
   }

@@ -1728,32 +1728,35 @@ class MarkerPopup extends StatelessWidget {
             ),
           ])),
         ),
-        TextButton(
-          child: Container(
-            width: MediaQuery.of(context).size.width - 40,
-            height: 50,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  colors: [Colors.blue.shade700, Colors.red.shade600],
-                  begin: const FractionalOffset(0.0, 0.0),
-                  end: const FractionalOffset(0.6, 0.6),
-                  stops: const [0.0, 1.0],
-                  tileMode: TileMode.clamp),
-              borderRadius: BorderRadius.circular(10),
+        Positioned(
+          bottom: 10,
+          child: TextButton(
+            child: Container(
+              width: MediaQuery.of(context).size.width - 40,
+              height: 50,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [Colors.blue.shade700, Colors.red.shade600],
+                    begin: const FractionalOffset(0.0, 0.0),
+                    end: const FractionalOffset(0.6, 0.6),
+                    stops: const [0.0, 1.0],
+                    tileMode: TileMode.clamp),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Hiển thị trên bản đồ",
+                    style: TextStyle(color: lightColors.background, fontSize: 17),
+                  ),
+                ],
+              ),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Hiển thị trên bản đồ",
-                  style: TextStyle(color: lightColors.background, fontSize: 17),
-                ),
-              ],
-            ),
+            onPressed: () {
+              Navigator.pop(context);
+            },
           ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
         )
       ],
     );

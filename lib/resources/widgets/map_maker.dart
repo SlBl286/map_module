@@ -4,7 +4,7 @@ import 'package:nylo_framework/nylo_framework.dart';
 class MarkerWidget extends StatelessWidget {
   Map<String, dynamic> attributes;
   MarkerWidget({Key? key, required this.attributes})
-      : MarkerWidget(key: key);
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

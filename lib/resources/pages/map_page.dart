@@ -11,6 +11,7 @@ import 'package:map_module/app/utils/map.dart';
 import 'package:map_module/bootstrap/helpers.dart';
 import 'package:map_module/resources/widgets/cot_dien_marker.dart';
 import 'package:map_module/resources/widgets/diem_do_marker.dart';
+import 'package:map_module/resources/widgets/map_maker.dart';
 import 'package:map_module/resources/widgets/may_bien_ap_marker.dart';
 import 'package:map_module/resources/widgets/scada_marker.dart';
 import 'package:map_module/resources/widgets/su_co.dart';
@@ -164,7 +165,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                             item.properties!, item.geometryPoint!.coordinates);
                       }
                     },
-                    child: MarkerPopup(
+                    child: MarkerWidget(
                         attributes: item.properties!),
                   ),
                 ),

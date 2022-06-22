@@ -1710,11 +1710,11 @@ class MarkerPopup extends StatelessWidget {
     return Stack(
       children: [
         Container(
+          height: MediaQuery.of(context).size.height - 70,
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
           child: SingleChildScrollView(
               child: Column(children: [
             Container(
-              height: MediaQuery.of(context).size.height-70,
                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 decoration: BoxDecoration(
                   border: Border.all(

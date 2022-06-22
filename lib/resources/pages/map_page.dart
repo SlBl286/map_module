@@ -164,7 +164,7 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
                             item.properties!, item.geometryPoint!.coordinates);
                       }
                     },
-                    child: ThietBiDongCatWidgetMarker(
+                    child: MarkerPopup(
                         attributes: item.properties!),
                   ),
                 ),

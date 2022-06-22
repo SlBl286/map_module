@@ -25,9 +25,9 @@ class MapUtils {
       context: context,
       backgroundColor: ThemeColor.get(context).background,
       builder: (context) => StatefulBuilder(builder: (context, innerSetState) {
-        
-            return MarkerPopup(attributes: attributes,);
-        
+        return MarkerPopup(
+          attributes: attributes,
+        );
       }),
     );
   }
@@ -1714,18 +1714,41 @@ class MarkerPopup extends StatelessWidget {
           child: SingleChildScrollView(
               child: Column(children: [
             Container(
-              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              decoration: BoxDecoration(
-                border: Border.all(
-                  color: Colors.black.withOpacity(0.13),
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.black.withOpacity(0.13),
+                  ),
+                  borderRadius: BorderRadius.all(Radius.circular(5.0)),
                 ),
-                borderRadius: BorderRadius.all(Radius.circular(5.0)),
-              ),
-              child: Column(
-                  children: attributes.entries
-                      .map((map) => _OddRow(text: map.key, title: map.value.toString()))
-                      .toList()),
-            ),
+                child: Builder(
+                  builder: ((context) {
+                    List<Widget> columnItems = [];
+                    for (int i = 0; i < attributes.length; i++) {
+                      if (i % 2 != 0)
+                        columnItems.add(
+                          _OddRow(
+                              text: attributes.entries
+                                  .elementAt(i)
+                                  .value
+                                  .toString(),
+                              title: attributes.entries.elementAt(i).key),
+                        );
+                      else
+                        columnItems.add(
+                          _EvenRow(
+                              text: attributes.entries
+                                  .elementAt(i)
+                                  .value
+                                  .toString(),
+                              title: attributes.entries.elementAt(i).key),
+                        );
+                      if (i != attributes.length - 1)
+                        columnItems.add(DividerWidget());
+                    }
+                    return Column(children: columnItems);
+                  }),
+                )),
           ])),
         ),
         Positioned(
@@ -1748,7 +1771,8 @@ class MarkerPopup extends StatelessWidget {
                 children: [
                   Text(
                     "Hiển thị trên bản đồ",
-                    style: TextStyle(color: lightColors.background, fontSize: 17),
+                    style:
+                        TextStyle(color: lightColors.background, fontSize: 17),
                   ),
                 ],
               ),
@@ -1776,7 +1800,7 @@ class _OddRow extends StatelessWidget {
       alignment: Alignment.centerLeft,
       height: 40,
       decoration: BoxDecoration(
-        color: Color(0xffeceff1),
+        color: Theme.of(context).backgroundColor.withRed(200),
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(5), topRight: Radius.circular(5)),
       ),
@@ -1785,11 +1809,17 @@ class _OddRow extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                color: Theme.of(context).primaryColor.withAlpha(200)),
           ),
           Text(
             text,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).primaryColor),
           ),
         ],
       ),
@@ -1810,7 +1840,7 @@ class _EvenRow extends StatelessWidget {
       alignment: Alignment.centerLeft,
       height: 40,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Theme.of(context).backgroundColor,
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(5), topRight: Radius.circular(5)),
       ),
@@ -1819,11 +1849,17 @@ class _EvenRow extends StatelessWidget {
         children: [
           Text(
             title,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+                color: Theme.of(context).primaryColor.withAlpha(200)),
           ),
           Text(
             text,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Theme.of(context).primaryColor),
           ),
         ],
       ),

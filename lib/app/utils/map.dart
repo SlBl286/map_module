@@ -1754,6 +1754,8 @@ class MarkerPopup extends StatelessWidget {
         ),
         Positioned(
           bottom: 10,
+          right: 10,
+          left: 10,
           child: TextButton(
             child: Container(
               width: MediaQuery.of(context).size.width - 40,
@@ -1816,7 +1818,7 @@ class _OddRow extends StatelessWidget {
                 color: Theme.of(context).primaryColor.withAlpha(200)),
           ),
           Container(
-            width: MediaQuery.of(context).size.width / 3,
+            width: MediaQuery.of(context).size.width / 2.5,
             child: Text(
               text,
               overflow: TextOverflow.ellipsis,
@@ -1860,7 +1862,7 @@ class _EvenRow extends StatelessWidget {
                 color: Theme.of(context).primaryColor.withAlpha(200)),
           ),
           Container(
-            width: MediaQuery.of(context).size.width / 3,
+            width: MediaQuery.of(context).size.width / 2.5,
             child: Text(
               text,
               overflow: TextOverflow.ellipsis,

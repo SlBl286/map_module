@@ -1714,6 +1714,7 @@ class MarkerPopup extends StatelessWidget {
           child: SingleChildScrollView(
               child: Column(children: [
             Container(
+              height: MediaQuery.of(context).size.height-70,
                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
                 decoration: BoxDecoration(
                   border: Border.all(
@@ -1800,7 +1801,7 @@ class _OddRow extends StatelessWidget {
       alignment: Alignment.centerLeft,
       height: 40,
       decoration: BoxDecoration(
-        color: Theme.of(context).backgroundColor.withRed(200),
+        color: Theme.of(context).backgroundColor.withRed(40),
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(5), topRight: Radius.circular(5)),
       ),
@@ -1810,14 +1811,15 @@ class _OddRow extends StatelessWidget {
           Text(
             title,
             style: TextStyle(
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: FontWeight.w400,
                 color: Theme.of(context).primaryColor.withAlpha(200)),
           ),
           Text(
             text,
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
                 color: Theme.of(context).primaryColor),
           ),
@@ -1850,14 +1852,15 @@ class _EvenRow extends StatelessWidget {
           Text(
             title,
             style: TextStyle(
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: FontWeight.w400,
                 color: Theme.of(context).primaryColor.withAlpha(200)),
           ),
           Text(
             text,
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(
-                fontSize: 16,
+                fontSize: 14,
                 fontWeight: FontWeight.bold,
                 color: Theme.of(context).primaryColor),
           ),

@@ -1755,7 +1755,7 @@ class MarkerPopup extends StatelessWidget {
               ),
               child: Column(
                   children: attributes.entries
-                      .map((map) => _OddRow(text: map.key, title: map.value))
+                      .map((map) => _OddRow(text: map.key, title: map.value.toString()))
                       .toList()),
             ),
           ])),

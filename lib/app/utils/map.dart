@@ -1710,7 +1710,7 @@ class MarkerPopup extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          height: MediaQuery.of(context).size.height - 70,
+          height: 700,
           padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
           child: SingleChildScrollView(
               child: Column(children: [
@@ -1801,7 +1801,7 @@ class _OddRow extends StatelessWidget {
       alignment: Alignment.centerLeft,
       height: 40,
       decoration: BoxDecoration(
-        color: Theme.of(context).backgroundColor.withRed(40),
+        color: Theme.of(context).backgroundColor.withRed(80),
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(5), topRight: Radius.circular(5)),
       ),
@@ -1815,13 +1815,16 @@ class _OddRow extends StatelessWidget {
                 fontWeight: FontWeight.w400,
                 color: Theme.of(context).primaryColor.withAlpha(200)),
           ),
-          Text(
-            text,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Theme.of(context).primaryColor),
+          Container(
+             width: MediaQuery.of(context).size.width / 3,
+            child: Text(
+              text,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).primaryColor),
+            ),
           ),
         ],
       ),
@@ -1856,13 +1859,16 @@ class _EvenRow extends StatelessWidget {
                 fontWeight: FontWeight.w400,
                 color: Theme.of(context).primaryColor.withAlpha(200)),
           ),
-          Text(
-            text,
-            overflow: TextOverflow.ellipsis,
-            style: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-                color: Theme.of(context).primaryColor),
+          Container(
+            width: MediaQuery.of(context).size.width / 3,
+            child: Text(
+              text,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).primaryColor),
+            ),
           ),
         ],
       ),

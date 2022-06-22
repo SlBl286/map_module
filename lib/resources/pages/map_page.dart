@@ -143,8 +143,8 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
     await widget.controller.loadGeoJson(_dto.layerId!);
     setState(() {
       for (var item in widget.controller.features) {
-        switch (_dto.layerId) {
-          case LayerEnum.thietBiDongCatCaoThe:
+        switch (item.type) {
+          case FeatureType.point:
             if (item.geometryPoint != null) {
               _markers.add(
                 Marker(
@@ -171,614 +171,23 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
               );
             }
             break;
-          case LayerEnum.thietBiDoDemCaoThe:
-            if (item.geometryPoint != null) {
-              _markers.add(
-                Marker(
-                  rotate: true,
-                  width: 150.0,
-                  height: 40.0,
-                  point: item.geometryPoint!.coordinates,
-                  builder: (ctx) => GestureDetector(
-                    onTap: () async {
-                      await MapUtils.animatedMapMove(this, mapController,
-                          item.geometryPoint!.coordinates, 17);
-                      if (item.properties != null) {
-                        if (kDebugMode) {
-                          print(item.properties);
-                        }
-                        MapUtils.showInfor(context, _dto.layerId!,
-                            item.properties!, item.geometryPoint!.coordinates);
-                      }
-                    },
-                    child:
-                        ThietBiDoDemWidgetMarker(attributes: item.properties!),
-                  ),
-                ),
-              );
-            }
-            break;
-          case LayerEnum.mayBienApCaoThe:
-            if (item.geometryPoint != null) {
-              _markers.add(
-                Marker(
-                  rotate: true,
-                  width: 150.0,
-                  height: 40.0,
-                  point: item.geometryPoint!.coordinates,
-                  builder: (ctx) => GestureDetector(
-                    onTap: () async {
-                      await MapUtils.animatedMapMove(this, mapController,
-                          item.geometryPoint!.coordinates, 17);
-                      if (item.properties != null) {
-                        if (kDebugMode) {
-                          print(item.properties);
-                        }
-                        MapUtils.showInfor(context, _dto.layerId!,
-                            item.properties!, item.geometryPoint!.coordinates);
-                      }
-                    },
-                    child: MayBienApWidgetMarker(attributes: item.properties!),
-                  ),
-                ),
-              );
-            }
-            break;
-          case LayerEnum.tramBienApCaoThe:
-            if (item.geometryPoint != null) {
-              _markers.add(
-                Marker(
-                  rotate: true,
-                  width: 150.0,
-                  height: 40.0,
-                  point: item.geometryPoint!.coordinates,
-                  builder: (ctx) => GestureDetector(
-                    onTap: () async {
-                      await MapUtils.animatedMapMove(this, mapController,
-                          item.geometryPoint!.coordinates, 17);
-                      if (item.properties != null) {
-                        if (kDebugMode) {
-                          print(item.properties);
-                        }
-                        MapUtils.showInfor(context, _dto.layerId!,
-                            item.properties!, item.geometryPoint!.coordinates);
-                      }
-                    },
-                    child: TramBienApWidgetMarker(attributes: item.properties!),
-                  ),
-                ),
-              );
-            }
-            break;
-          case LayerEnum.tramBienApTrungThe:
-            if (item.geometryPoint != null) {
-              _markers.add(
-                Marker(
-                  rotate: true,
-                  width: 150.0,
-                  height: 40.0,
-                  point: item.geometryPoint!.coordinates,
-                  builder: (ctx) => GestureDetector(
-                    onTap: () async {
-                      await MapUtils.animatedMapMove(this, mapController,
-                          item.geometryPoint!.coordinates, 17);
-                      if (item.properties != null) {
-                        if (kDebugMode) {
-                          print(item.properties);
-                        }
-                        MapUtils.showInfor(context, _dto.layerId!,
-                            item.properties!, item.geometryPoint!.coordinates);
-                      }
-                    },
-                    child: TramBienApWidgetMarker(attributes: item.properties!),
-                  ),
-                ),
-              );
-            }
-            break;
-          case LayerEnum.cotDienCaoThe:
-            if (item.geometryPoint != null) {
-              _markers.add(
-                Marker(
-                  rotate: true,
-                  width: 150.0,
-                  height: 40.0,
-                  point: item.geometryPoint!.coordinates,
-                  builder: (ctx) => GestureDetector(
-                    onTap: () async {
-                      await MapUtils.animatedMapMove(this, mapController,
-                          item.geometryPoint!.coordinates, 17);
-                      if (item.properties != null) {
-                        if (kDebugMode) {
-                          print(item.properties);
-                        }
-                        MapUtils.showInfor(context, _dto.layerId!,
-                            item.properties!, item.geometryPoint!.coordinates);
-                      }
-                    },
-                    child: CotDienWidgetMarker(attributes: item.properties!),
-                  ),
-                ),
-              );
-            }
-            break;
-          case LayerEnum.duongDayCaoThe:
-            if (item.geometryLineString != null) {
-              _polylines.add(
-                Polyline(
-                  points: item.geometryLineString!.coordinates,
-                  strokeWidth: 3,
-                  color: Colors.blueAccent,
-                ),
-              );
-            }
-            break;
-          case LayerEnum.doangDayTrungThe:
-            if (item.geometryLineString != null) {
-              _polylines.add(
-                Polyline(
-                  points: item.geometryLineString!.coordinates,
-                  strokeWidth: 3,
-                  color: Colors.blueAccent,
-                ),
-              );
-            }
-            break;
-          case LayerEnum.nenTramCaoThe:
-            if (item.geometryPylygon != null) {
-              _polygons.add(
+          case FeatureType.polygon:
+          if(item.geometryLineString != null)
+          _polygons.add(
                 Polygon(
                     points: item.geometryPylygon!.coordinates.first,
                     borderStrokeWidth: 2,
                     color: Colors.blue.withAlpha(150),
                     borderColor: Colors.grey),
               );
-            }
             break;
-          case LayerEnum.muongCapTrungThe:
-            if (item.geometryPylygon != null) {
-              _polygons.add(
-                Polygon(
-                    points: item.geometryPylygon!.coordinates.first,
-                    borderStrokeWidth: 2,
-                    color: Colors.blue.withAlpha(150),
-                    borderColor: Colors.grey),
-              );
-            }
-            break;
-          case LayerEnum.tuRMUTrungThe:
-            if (item.geometryPylygon != null) {
-              _polygons.add(
-                Polygon(
-                    points: item.geometryPylygon!.coordinates.first,
-                    borderStrokeWidth: 2,
-                    color: Colors.blue.withAlpha(150),
-                    borderColor: Colors.grey),
-              );
-            }
-            break;
-
-          case LayerEnum.tuPhanPhoiHaThe:
-            if (item.geometryPylygon != null) {
-              _polygons.add(
-                Polygon(
-                    points: item.geometryPylygon!.coordinates.first,
-                    borderStrokeWidth: 2,
-                    color: Colors.blue.withAlpha(150),
-                    borderColor: Colors.grey),
-              );
-            }
-            break;
-          case LayerEnum.scadaTrungThe:
-            if (item.geometryPoint != null) {
-              _markers.add(
-                Marker(
-                  rotate: true,
-                  width: 150.0,
-                  height: 40.0,
-                  point: item.geometryPoint!.coordinates,
-                  builder: (ctx) => GestureDetector(
-                      onTap: () async {
-                        await MapUtils.animatedMapMove(this, mapController,
-                            item.geometryPoint!.coordinates, 17);
-                        if (item.properties != null) {
-                          if (kDebugMode) {
-                            print(item.properties);
-                          }
-                          MapUtils.showInfor(
-                              context,
-                              _dto.layerId!,
-                              item.properties!,
-                              item.geometryPoint!.coordinates);
-                        }
-                      },
-                      child: ScadaWidgetMarker(attributes: item.properties!)),
-                ),
-              );
-            }
-            break;
-          case LayerEnum.tuPhanPhoiHaThe:
-            if (item.geometryPylygon != null) {
-              _polygons.add(
-                Polygon(
-                    points: item.geometryPylygon!.coordinates.first,
-                    borderStrokeWidth: 2,
-                    color: Colors.blue.withAlpha(150),
-                    borderColor: Colors.grey),
-              );
-            }
-            break;
-          case LayerEnum.diemChuyenMachBTS:
-            if (item.geometryPoint != null) {
-              _markers.add(
-                Marker(
-                  rotate: true,
-                  width: 150.0,
-                  height: 40.0,
-                  point: item.geometryPoint!.coordinates,
-                  builder: (ctx) => GestureDetector(
-                      onTap: () async {
-                        await MapUtils.animatedMapMove(this, mapController,
-                            item.geometryPoint!.coordinates, 17);
-                        if (item.properties != null) {
-                          if (kDebugMode) {
-                            print(item.properties);
-                          }
-                          MapUtils.showInfor(
-                              context,
-                              _dto.layerId!,
-                              item.properties!,
-                              item.geometryPoint!.coordinates);
-                        }
-                      },
-                      child: SuCoWidgetMarker(attributes: item.properties!)),
-                ),
-              );
-            }
-
-            break;
-          case LayerEnum.mayBienApHaThe:
-            if (item.geometryPoint != null) {
-              _markers.add(
-                Marker(
-                  rotate: true,
-                  width: 150.0,
-                  height: 40.0,
-                  point: item.geometryPoint!.coordinates,
-                  builder: (ctx) => GestureDetector(
-                      onTap: () async {
-                        await MapUtils.animatedMapMove(this, mapController,
-                            item.geometryPoint!.coordinates, 17);
-                        if (item.properties != null) {
-                          if (kDebugMode) {
-                            print(item.properties);
-                          }
-                          MapUtils.showInfor(
-                              context,
-                              _dto.layerId!,
-                              item.properties!,
-                              item.geometryPoint!.coordinates);
-                        }
-                      },
-                      child: SuCoWidgetMarker(attributes: item.properties!)),
-                ),
-              );
-            }
-
-            break;
-          case LayerEnum.dayDanCaoThe:
-            if (item.geometryLineString != null) {
+          case FeatureType.lineString:
+           if (item.geometryLineString != null) {
               _polylines.add(
                 Polyline(
                   points: item.geometryLineString!.coordinates,
                   strokeWidth: 3,
                   color: Colors.blueAccent,
-                ),
-              );
-            }
-            break;
-          case LayerEnum.duongDayHaThe:
-            if (item.geometryLineString != null) {
-              _polylines.add(
-                Polyline(
-                  points: item.geometryLineString!.coordinates,
-                  strokeWidth: 3,
-                  color: Colors.blueAccent,
-                ),
-              );
-            }
-            break;
-          case LayerEnum.duongDayTrungThe:
-            if (item.geometryLineString != null) {
-              _polylines.add(
-                Polyline(
-                  points: item.geometryLineString!.coordinates,
-                  strokeWidth: 3,
-                  color: Colors.blueAccent,
-                ),
-              );
-            }
-            break;
-          case LayerEnum.tuyenCapNgamBTS:
-            if (item.geometryLineString != null) {
-              _polylines.add(
-                Polyline(
-                  points: item.geometryLineString!.coordinates,
-                  strokeWidth: 3,
-                  color: Colors.blueAccent,
-                ),
-              );
-            }
-            break;
-          case LayerEnum.tuyenCapTreoBTS:
-            if (item.geometryLineString != null) {
-              _polylines.add(
-                Polyline(
-                  points: item.geometryLineString!.coordinates,
-                  strokeWidth: 3,
-                  color: Colors.blueAccent,
-                ),
-              );
-            }
-            break;
-          case LayerEnum.viTriSuCo:
-            if (item.geometryPoint != null) {
-              _markers.add(
-                Marker(
-                  rotate: true,
-                  width: 150.0,
-                  height: 40.0,
-                  point: item.geometryPoint!.coordinates,
-                  builder: (ctx) => GestureDetector(
-                      onTap: () async {
-                        await MapUtils.animatedMapMove(this, mapController,
-                            item.geometryPoint!.coordinates, 17);
-                        if (item.properties != null) {
-                          if (kDebugMode) {
-                            print(item.properties);
-                          }
-                          MapUtils.showInfor(
-                              context,
-                              _dto.layerId!,
-                              item.properties!,
-                              item.geometryPoint!.coordinates);
-                        }
-                      },
-                      child: SuCoWidgetMarker(attributes: item.properties!)),
-                ),
-              );
-            }
-            break;
-          case LayerEnum.diemDoHaThe:
-            if (item.geometryPoint != null) {
-              _markers.add(
-                Marker(
-                  rotate: true,
-                  width: 150.0,
-                  height: 40.0,
-                  point: item.geometryPoint!.coordinates,
-                  builder: (ctx) => GestureDetector(
-                      onTap: () async {
-                        await MapUtils.animatedMapMove(this, mapController,
-                            item.geometryPoint!.coordinates, 17);
-                        if (item.properties != null) {
-                          if (kDebugMode) {
-                            print(item.properties);
-                          }
-                          MapUtils.showInfor(
-                              context,
-                              _dto.layerId!,
-                              item.properties!,
-                              item.geometryPoint!.coordinates);
-                        }
-                      },
-                      child: DiemDoMarker(attributes: item.properties!)),
-                ),
-              );
-            }
-            break;
-
-          case LayerEnum.thietBiDongCatTrungThe:
-            if (item.geometryPoint != null) {
-              _markers.add(
-                Marker(
-                  rotate: true,
-                  width: 150.0,
-                  height: 40.0,
-                  point: item.geometryPoint!.coordinates,
-                  builder: (ctx) => GestureDetector(
-                      onTap: () async {
-                        await MapUtils.animatedMapMove(this, mapController,
-                            item.geometryPoint!.coordinates, 17);
-                        if (item.properties != null) {
-                          if (kDebugMode) {
-                            print(item.properties);
-                          }
-                          MapUtils.showInfor(
-                              context,
-                              _dto.layerId!,
-                              item.properties!,
-                              item.geometryPoint!.coordinates);
-                        }
-                      },
-                      child: SuCoWidgetMarker(attributes: item.properties!)),
-                ),
-              );
-            }
-            break;
-
-          case LayerEnum.thietBiDongCatHaThe:
-            if (item.geometryPoint != null) {
-              _markers.add(
-                Marker(
-                  rotate: true,
-                  width: 150.0,
-                  height: 40.0,
-                  point: item.geometryPoint!.coordinates,
-                  builder: (ctx) => GestureDetector(
-                      onTap: () async {
-                        await MapUtils.animatedMapMove(this, mapController,
-                            item.geometryPoint!.coordinates, 17);
-                        if (item.properties != null) {
-                          if (kDebugMode) {
-                            print(item.properties);
-                          }
-                          MapUtils.showInfor(
-                              context,
-                              _dto.layerId!,
-                              item.properties!,
-                              item.geometryPoint!.coordinates);
-                        }
-                      },
-                      child: SuCoWidgetMarker(attributes: item.properties!)),
-                ),
-              );
-            }
-            break;
-          case LayerEnum.thietBiDoDemHaThe:
-            if (item.geometryPoint != null) {
-              _markers.add(
-                Marker(
-                  rotate: true,
-                  width: 150.0,
-                  height: 40.0,
-                  point: item.geometryPoint!.coordinates,
-                  builder: (ctx) => GestureDetector(
-                      onTap: () async {
-                        await MapUtils.animatedMapMove(this, mapController,
-                            item.geometryPoint!.coordinates, 17);
-                        if (item.properties != null) {
-                          if (kDebugMode) {
-                            print(item.properties);
-                          }
-                          MapUtils.showInfor(
-                              context,
-                              _dto.layerId!,
-                              item.properties!,
-                              item.geometryPoint!.coordinates);
-                        }
-                      },
-                      child: ThietBiDoDemWidgetMarker(
-                          attributes: item.properties!)),
-                ),
-              );
-            }
-            break;
-          case LayerEnum.congToKhachHangHaThe:
-            if (item.geometryPoint != null) {
-              _markers.add(
-                Marker(
-                  rotate: true,
-                  width: 150.0,
-                  height: 40.0,
-                  point: item.geometryPoint!.coordinates,
-                  builder: (ctx) => GestureDetector(
-                      onTap: () async {
-                        await MapUtils.animatedMapMove(this, mapController,
-                            item.geometryPoint!.coordinates, 17);
-                        if (item.properties != null) {
-                          if (kDebugMode) {
-                            print(item.properties);
-                          }
-                          MapUtils.showInfor(
-                              context,
-                              _dto.layerId!,
-                              item.properties!,
-                              item.geometryPoint!.coordinates);
-                        }
-                      },
-                      child: SuCoWidgetMarker(attributes: item.properties!)),
-                ),
-              );
-            }
-            break;
-          case LayerEnum.cotDienHaThe:
-            if (item.geometryPoint != null) {
-              _markers.add(
-                Marker(
-                  rotate: true,
-                  width: 150.0,
-                  height: 40.0,
-                  point: item.geometryPoint!.coordinates,
-                  builder: (ctx) => GestureDetector(
-                    onTap: () async {
-                      await MapUtils.animatedMapMove(this, mapController,
-                          item.geometryPoint!.coordinates, 17);
-                      if (item.properties != null) {
-                        if (kDebugMode) {
-                          print(item.properties);
-                        }
-                        MapUtils.showInfor(context, _dto.layerId!,
-                            item.properties!, item.geometryPoint!.coordinates);
-                      }
-                    },
-                    child: SuCoWidgetMarker(attributes: item.properties!),
-                  ),
-                ),
-              );
-            }
-            break;
-          case LayerEnum.cotDienTrungThe:
-            if (item.geometryPoint != null) {
-              _markers.add(
-                Marker(
-                  rotate: true,
-                  width: 150.0,
-                  height: 40.0,
-                  point: item.geometryPoint!.coordinates,
-                  builder: (ctx) => GestureDetector(
-                    onTap: () async {
-                      await MapUtils.animatedMapMove(this, mapController,
-                          item.geometryPoint!.coordinates, 17);
-                      if (item.properties != null) {
-                        if (kDebugMode) {
-                          print(item.properties);
-                        }
-                        MapUtils.showInfor(context, _dto.layerId!,
-                            item.properties!, item.geometryPoint!.coordinates);
-                      }
-                    },
-                    child: SuCoWidgetMarker(attributes: item.properties!),
-                  ),
-                ),
-              );
-            }
-            break;
-          case LayerEnum.nenTramTrungThe:
-            if (item.geometryPylygon != null) {
-              _polygons.add(
-                Polygon(
-                    points: item.geometryPylygon!.coordinates.first,
-                    borderStrokeWidth: 2,
-                    color: Colors.blue.withAlpha(150),
-                    borderColor: Colors.grey),
-              );
-            }
-            break;
-          case LayerEnum.diemSuDungDien:
-            if (item.geometryPoint != null) {
-              _markers.add(
-                Marker(
-                  rotate: true,
-                  width: 150.0,
-                  height: 40.0,
-                  point: item.geometryPoint!.coordinates,
-                  builder: (ctx) => GestureDetector(
-                      onTap: () async {
-                        await MapUtils.animatedMapMove(this, mapController,
-                            item.geometryPoint!.coordinates, 17);
-                        if (item.properties != null) {
-                          if (kDebugMode) {
-                            print(item.properties);
-                          }
-                          MapUtils.showInfor(
-                              context,
-                              _dto.layerId!,
-                              item.properties!,
-                              item.geometryPoint!.coordinates);
-                        }
-                      },
-                      child: SuCoWidgetMarker(attributes: item.properties!)),
                 ),
               );
             }
@@ -909,3 +318,643 @@ class _MapPageState extends NyState<MapPage> with TickerProviderStateMixin {
     );
   }
 }
+//  switch (_dto.layerId) {
+//           case LayerEnum.thietBiDongCatCaoThe:
+//             if (item.geometryPoint != null) {
+//               _markers.add(
+//                 Marker(
+//                   rotate: true,
+//                   width: 150.0,
+//                   height: 40.0,
+//                   point: item.geometryPoint!.coordinates,
+//                   builder: (ctx) => GestureDetector(
+//                     onTap: () async {
+//                       await MapUtils.animatedMapMove(this, mapController,
+//                           item.geometryPoint!.coordinates, 17);
+//                       if (item.properties != null) {
+//                         if (kDebugMode) {
+//                           print(item.properties);
+//                         }
+//                         MapUtils.showInfor(context, _dto.layerId!,
+//                             item.properties!, item.geometryPoint!.coordinates);
+//                       }
+//                     },
+//                     child: ThietBiDongCatWidgetMarker(
+//                         attributes: item.properties!),
+//                   ),
+//                 ),
+//               );
+//             }
+//             break;
+//           case LayerEnum.thietBiDoDemCaoThe:
+//             if (item.geometryPoint != null) {
+//               _markers.add(
+//                 Marker(
+//                   rotate: true,
+//                   width: 150.0,
+//                   height: 40.0,
+//                   point: item.geometryPoint!.coordinates,
+//                   builder: (ctx) => GestureDetector(
+//                     onTap: () async {
+//                       await MapUtils.animatedMapMove(this, mapController,
+//                           item.geometryPoint!.coordinates, 17);
+//                       if (item.properties != null) {
+//                         if (kDebugMode) {
+//                           print(item.properties);
+//                         }
+//                         MapUtils.showInfor(context, _dto.layerId!,
+//                             item.properties!, item.geometryPoint!.coordinates);
+//                       }
+//                     },
+//                     child:
+//                         ThietBiDoDemWidgetMarker(attributes: item.properties!),
+//                   ),
+//                 ),
+//               );
+//             }
+//             break;
+//           case LayerEnum.mayBienApCaoThe:
+//             if (item.geometryPoint != null) {
+//               _markers.add(
+//                 Marker(
+//                   rotate: true,
+//                   width: 150.0,
+//                   height: 40.0,
+//                   point: item.geometryPoint!.coordinates,
+//                   builder: (ctx) => GestureDetector(
+//                     onTap: () async {
+//                       await MapUtils.animatedMapMove(this, mapController,
+//                           item.geometryPoint!.coordinates, 17);
+//                       if (item.properties != null) {
+//                         if (kDebugMode) {
+//                           print(item.properties);
+//                         }
+//                         MapUtils.showInfor(context, _dto.layerId!,
+//                             item.properties!, item.geometryPoint!.coordinates);
+//                       }
+//                     },
+//                     child: MayBienApWidgetMarker(attributes: item.properties!),
+//                   ),
+//                 ),
+//               );
+//             }
+//             break;
+//           case LayerEnum.tramBienApCaoThe:
+//             if (item.geometryPoint != null) {
+//               _markers.add(
+//                 Marker(
+//                   rotate: true,
+//                   width: 150.0,
+//                   height: 40.0,
+//                   point: item.geometryPoint!.coordinates,
+//                   builder: (ctx) => GestureDetector(
+//                     onTap: () async {
+//                       await MapUtils.animatedMapMove(this, mapController,
+//                           item.geometryPoint!.coordinates, 17);
+//                       if (item.properties != null) {
+//                         if (kDebugMode) {
+//                           print(item.properties);
+//                         }
+//                         MapUtils.showInfor(context, _dto.layerId!,
+//                             item.properties!, item.geometryPoint!.coordinates);
+//                       }
+//                     },
+//                     child: TramBienApWidgetMarker(attributes: item.properties!),
+//                   ),
+//                 ),
+//               );
+//             }
+//             break;
+//           case LayerEnum.tramBienApTrungThe:
+//             if (item.geometryPoint != null) {
+//               _markers.add(
+//                 Marker(
+//                   rotate: true,
+//                   width: 150.0,
+//                   height: 40.0,
+//                   point: item.geometryPoint!.coordinates,
+//                   builder: (ctx) => GestureDetector(
+//                     onTap: () async {
+//                       await MapUtils.animatedMapMove(this, mapController,
+//                           item.geometryPoint!.coordinates, 17);
+//                       if (item.properties != null) {
+//                         if (kDebugMode) {
+//                           print(item.properties);
+//                         }
+//                         MapUtils.showInfor(context, _dto.layerId!,
+//                             item.properties!, item.geometryPoint!.coordinates);
+//                       }
+//                     },
+//                     child: TramBienApWidgetMarker(attributes: item.properties!),
+//                   ),
+//                 ),
+//               );
+//             }
+//             break;
+//           case LayerEnum.cotDienCaoThe:
+//             if (item.geometryPoint != null) {
+//               _markers.add(
+//                 Marker(
+//                   rotate: true,
+//                   width: 150.0,
+//                   height: 40.0,
+//                   point: item.geometryPoint!.coordinates,
+//                   builder: (ctx) => GestureDetector(
+//                     onTap: () async {
+//                       await MapUtils.animatedMapMove(this, mapController,
+//                           item.geometryPoint!.coordinates, 17);
+//                       if (item.properties != null) {
+//                         if (kDebugMode) {
+//                           print(item.properties);
+//                         }
+//                         MapUtils.showInfor(context, _dto.layerId!,
+//                             item.properties!, item.geometryPoint!.coordinates);
+//                       }
+//                     },
+//                     child: CotDienWidgetMarker(attributes: item.properties!),
+//                   ),
+//                 ),
+//               );
+//             }
+//             break;
+//           case LayerEnum.duongDayCaoThe:
+//             if (item.geometryLineString != null) {
+//               _polylines.add(
+//                 Polyline(
+//                   points: item.geometryLineString!.coordinates,
+//                   strokeWidth: 3,
+//                   color: Colors.blueAccent,
+//                 ),
+//               );
+//             }
+//             break;
+//           case LayerEnum.doangDayTrungThe:
+//             if (item.geometryLineString != null) {
+//               _polylines.add(
+//                 Polyline(
+//                   points: item.geometryLineString!.coordinates,
+//                   strokeWidth: 3,
+//                   color: Colors.blueAccent,
+//                 ),
+//               );
+//             }
+//             break;
+//           case LayerEnum.nenTramCaoThe:
+//             if (item.geometryPylygon != null) {
+//               _polygons.add(
+//                 Polygon(
+//                     points: item.geometryPylygon!.coordinates.first,
+//                     borderStrokeWidth: 2,
+//                     color: Colors.blue.withAlpha(150),
+//                     borderColor: Colors.grey),
+//               );
+//             }
+//             break;
+//           case LayerEnum.muongCapTrungThe:
+//             if (item.geometryPylygon != null) {
+//               _polygons.add(
+//                 Polygon(
+//                     points: item.geometryPylygon!.coordinates.first,
+//                     borderStrokeWidth: 2,
+//                     color: Colors.blue.withAlpha(150),
+//                     borderColor: Colors.grey),
+//               );
+//             }
+//             break;
+//           case LayerEnum.tuRMUTrungThe:
+//             if (item.geometryPylygon != null) {
+//               _polygons.add(
+//                 Polygon(
+//                     points: item.geometryPylygon!.coordinates.first,
+//                     borderStrokeWidth: 2,
+//                     color: Colors.blue.withAlpha(150),
+//                     borderColor: Colors.grey),
+//               );
+//             }
+//             break;
+
+//           case LayerEnum.tuPhanPhoiHaThe:
+//             if (item.geometryPylygon != null) {
+//               _polygons.add(
+//                 Polygon(
+//                     points: item.geometryPylygon!.coordinates.first,
+//                     borderStrokeWidth: 2,
+//                     color: Colors.blue.withAlpha(150),
+//                     borderColor: Colors.grey),
+//               );
+//             }
+//             break;
+//           case LayerEnum.scadaTrungThe:
+//             if (item.geometryPoint != null) {
+//               _markers.add(
+//                 Marker(
+//                   rotate: true,
+//                   width: 150.0,
+//                   height: 40.0,
+//                   point: item.geometryPoint!.coordinates,
+//                   builder: (ctx) => GestureDetector(
+//                       onTap: () async {
+//                         await MapUtils.animatedMapMove(this, mapController,
+//                             item.geometryPoint!.coordinates, 17);
+//                         if (item.properties != null) {
+//                           if (kDebugMode) {
+//                             print(item.properties);
+//                           }
+//                           MapUtils.showInfor(
+//                               context,
+//                               _dto.layerId!,
+//                               item.properties!,
+//                               item.geometryPoint!.coordinates);
+//                         }
+//                       },
+//                       child: ScadaWidgetMarker(attributes: item.properties!)),
+//                 ),
+//               );
+//             }
+//             break;
+//           case LayerEnum.tuPhanPhoiHaThe:
+//             if (item.geometryPylygon != null) {
+//               _polygons.add(
+//                 Polygon(
+//                     points: item.geometryPylygon!.coordinates.first,
+//                     borderStrokeWidth: 2,
+//                     color: Colors.blue.withAlpha(150),
+//                     borderColor: Colors.grey),
+//               );
+//             }
+//             break;
+//           case LayerEnum.diemChuyenMachBTS:
+//             if (item.geometryPoint != null) {
+//               _markers.add(
+//                 Marker(
+//                   rotate: true,
+//                   width: 150.0,
+//                   height: 40.0,
+//                   point: item.geometryPoint!.coordinates,
+//                   builder: (ctx) => GestureDetector(
+//                       onTap: () async {
+//                         await MapUtils.animatedMapMove(this, mapController,
+//                             item.geometryPoint!.coordinates, 17);
+//                         if (item.properties != null) {
+//                           if (kDebugMode) {
+//                             print(item.properties);
+//                           }
+//                           MapUtils.showInfor(
+//                               context,
+//                               _dto.layerId!,
+//                               item.properties!,
+//                               item.geometryPoint!.coordinates);
+//                         }
+//                       },
+//                       child: SuCoWidgetMarker(attributes: item.properties!)),
+//                 ),
+//               );
+//             }
+
+//             break;
+//           case LayerEnum.mayBienApHaThe:
+//             if (item.geometryPoint != null) {
+//               _markers.add(
+//                 Marker(
+//                   rotate: true,
+//                   width: 150.0,
+//                   height: 40.0,
+//                   point: item.geometryPoint!.coordinates,
+//                   builder: (ctx) => GestureDetector(
+//                       onTap: () async {
+//                         await MapUtils.animatedMapMove(this, mapController,
+//                             item.geometryPoint!.coordinates, 17);
+//                         if (item.properties != null) {
+//                           if (kDebugMode) {
+//                             print(item.properties);
+//                           }
+//                           MapUtils.showInfor(
+//                               context,
+//                               _dto.layerId!,
+//                               item.properties!,
+//                               item.geometryPoint!.coordinates);
+//                         }
+//                       },
+//                       child: SuCoWidgetMarker(attributes: item.properties!)),
+//                 ),
+//               );
+//             }
+
+//             break;
+//           case LayerEnum.dayDanCaoThe:
+//             if (item.geometryLineString != null) {
+//               _polylines.add(
+//                 Polyline(
+//                   points: item.geometryLineString!.coordinates,
+//                   strokeWidth: 3,
+//                   color: Colors.blueAccent,
+//                 ),
+//               );
+//             }
+//             break;
+//           case LayerEnum.duongDayHaThe:
+//             if (item.geometryLineString != null) {
+//               _polylines.add(
+//                 Polyline(
+//                   points: item.geometryLineString!.coordinates,
+//                   strokeWidth: 3,
+//                   color: Colors.blueAccent,
+//                 ),
+//               );
+//             }
+//             break;
+//           case LayerEnum.duongDayTrungThe:
+//             if (item.geometryLineString != null) {
+//               _polylines.add(
+//                 Polyline(
+//                   points: item.geometryLineString!.coordinates,
+//                   strokeWidth: 3,
+//                   color: Colors.blueAccent,
+//                 ),
+//               );
+//             }
+//             break;
+//           case LayerEnum.tuyenCapNgamBTS:
+//             if (item.geometryLineString != null) {
+//               _polylines.add(
+//                 Polyline(
+//                   points: item.geometryLineString!.coordinates,
+//                   strokeWidth: 3,
+//                   color: Colors.blueAccent,
+//                 ),
+//               );
+//             }
+//             break;
+//           case LayerEnum.tuyenCapTreoBTS:
+//             if (item.geometryLineString != null) {
+//               _polylines.add(
+//                 Polyline(
+//                   points: item.geometryLineString!.coordinates,
+//                   strokeWidth: 3,
+//                   color: Colors.blueAccent,
+//                 ),
+//               );
+//             }
+//             break;
+//           case LayerEnum.viTriSuCo:
+//             if (item.geometryPoint != null) {
+//               _markers.add(
+//                 Marker(
+//                   rotate: true,
+//                   width: 150.0,
+//                   height: 40.0,
+//                   point: item.geometryPoint!.coordinates,
+//                   builder: (ctx) => GestureDetector(
+//                       onTap: () async {
+//                         await MapUtils.animatedMapMove(this, mapController,
+//                             item.geometryPoint!.coordinates, 17);
+//                         if (item.properties != null) {
+//                           if (kDebugMode) {
+//                             print(item.properties);
+//                           }
+//                           MapUtils.showInfor(
+//                               context,
+//                               _dto.layerId!,
+//                               item.properties!,
+//                               item.geometryPoint!.coordinates);
+//                         }
+//                       },
+//                       child: SuCoWidgetMarker(attributes: item.properties!)),
+//                 ),
+//               );
+//             }
+//             break;
+//           case LayerEnum.diemDoHaThe:
+//             if (item.geometryPoint != null) {
+//               _markers.add(
+//                 Marker(
+//                   rotate: true,
+//                   width: 150.0,
+//                   height: 40.0,
+//                   point: item.geometryPoint!.coordinates,
+//                   builder: (ctx) => GestureDetector(
+//                       onTap: () async {
+//                         await MapUtils.animatedMapMove(this, mapController,
+//                             item.geometryPoint!.coordinates, 17);
+//                         if (item.properties != null) {
+//                           if (kDebugMode) {
+//                             print(item.properties);
+//                           }
+//                           MapUtils.showInfor(
+//                               context,
+//                               _dto.layerId!,
+//                               item.properties!,
+//                               item.geometryPoint!.coordinates);
+//                         }
+//                       },
+//                       child: DiemDoMarker(attributes: item.properties!)),
+//                 ),
+//               );
+//             }
+//             break;
+
+//           case LayerEnum.thietBiDongCatTrungThe:
+//             if (item.geometryPoint != null) {
+//               _markers.add(
+//                 Marker(
+//                   rotate: true,
+//                   width: 150.0,
+//                   height: 40.0,
+//                   point: item.geometryPoint!.coordinates,
+//                   builder: (ctx) => GestureDetector(
+//                       onTap: () async {
+//                         await MapUtils.animatedMapMove(this, mapController,
+//                             item.geometryPoint!.coordinates, 17);
+//                         if (item.properties != null) {
+//                           if (kDebugMode) {
+//                             print(item.properties);
+//                           }
+//                           MapUtils.showInfor(
+//                               context,
+//                               _dto.layerId!,
+//                               item.properties!,
+//                               item.geometryPoint!.coordinates);
+//                         }
+//                       },
+//                       child: SuCoWidgetMarker(attributes: item.properties!)),
+//                 ),
+//               );
+//             }
+//             break;
+
+//           case LayerEnum.thietBiDongCatHaThe:
+//             if (item.geometryPoint != null) {
+//               _markers.add(
+//                 Marker(
+//                   rotate: true,
+//                   width: 150.0,
+//                   height: 40.0,
+//                   point: item.geometryPoint!.coordinates,
+//                   builder: (ctx) => GestureDetector(
+//                       onTap: () async {
+//                         await MapUtils.animatedMapMove(this, mapController,
+//                             item.geometryPoint!.coordinates, 17);
+//                         if (item.properties != null) {
+//                           if (kDebugMode) {
+//                             print(item.properties);
+//                           }
+//                           MapUtils.showInfor(
+//                               context,
+//                               _dto.layerId!,
+//                               item.properties!,
+//                               item.geometryPoint!.coordinates);
+//                         }
+//                       },
+//                       child: SuCoWidgetMarker(attributes: item.properties!)),
+//                 ),
+//               );
+//             }
+//             break;
+//           case LayerEnum.thietBiDoDemHaThe:
+//             if (item.geometryPoint != null) {
+//               _markers.add(
+//                 Marker(
+//                   rotate: true,
+//                   width: 150.0,
+//                   height: 40.0,
+//                   point: item.geometryPoint!.coordinates,
+//                   builder: (ctx) => GestureDetector(
+//                       onTap: () async {
+//                         await MapUtils.animatedMapMove(this, mapController,
+//                             item.geometryPoint!.coordinates, 17);
+//                         if (item.properties != null) {
+//                           if (kDebugMode) {
+//                             print(item.properties);
+//                           }
+//                           MapUtils.showInfor(
+//                               context,
+//                               _dto.layerId!,
+//                               item.properties!,
+//                               item.geometryPoint!.coordinates);
+//                         }
+//                       },
+//                       child: ThietBiDoDemWidgetMarker(
+//                           attributes: item.properties!)),
+//                 ),
+//               );
+//             }
+//             break;
+//           case LayerEnum.congToKhachHangHaThe:
+//             if (item.geometryPoint != null) {
+//               _markers.add(
+//                 Marker(
+//                   rotate: true,
+//                   width: 150.0,
+//                   height: 40.0,
+//                   point: item.geometryPoint!.coordinates,
+//                   builder: (ctx) => GestureDetector(
+//                       onTap: () async {
+//                         await MapUtils.animatedMapMove(this, mapController,
+//                             item.geometryPoint!.coordinates, 17);
+//                         if (item.properties != null) {
+//                           if (kDebugMode) {
+//                             print(item.properties);
+//                           }
+//                           MapUtils.showInfor(
+//                               context,
+//                               _dto.layerId!,
+//                               item.properties!,
+//                               item.geometryPoint!.coordinates);
+//                         }
+//                       },
+//                       child: SuCoWidgetMarker(attributes: item.properties!)),
+//                 ),
+//               );
+//             }
+//             break;
+//           case LayerEnum.cotDienHaThe:
+//             if (item.geometryPoint != null) {
+//               _markers.add(
+//                 Marker(
+//                   rotate: true,
+//                   width: 150.0,
+//                   height: 40.0,
+//                   point: item.geometryPoint!.coordinates,
+//                   builder: (ctx) => GestureDetector(
+//                     onTap: () async {
+//                       await MapUtils.animatedMapMove(this, mapController,
+//                           item.geometryPoint!.coordinates, 17);
+//                       if (item.properties != null) {
+//                         if (kDebugMode) {
+//                           print(item.properties);
+//                         }
+//                         MapUtils.showInfor(context, _dto.layerId!,
+//                             item.properties!, item.geometryPoint!.coordinates);
+//                       }
+//                     },
+//                     child: SuCoWidgetMarker(attributes: item.properties!),
+//                   ),
+//                 ),
+//               );
+//             }
+//             break;
+//           case LayerEnum.cotDienTrungThe:
+//             if (item.geometryPoint != null) {
+//               _markers.add(
+//                 Marker(
+//                   rotate: true,
+//                   width: 150.0,
+//                   height: 40.0,
+//                   point: item.geometryPoint!.coordinates,
+//                   builder: (ctx) => GestureDetector(
+//                     onTap: () async {
+//                       await MapUtils.animatedMapMove(this, mapController,
+//                           item.geometryPoint!.coordinates, 17);
+//                       if (item.properties != null) {
+//                         if (kDebugMode) {
+//                           print(item.properties);
+//                         }
+//                         MapUtils.showInfor(context, _dto.layerId!,
+//                             item.properties!, item.geometryPoint!.coordinates);
+//                       }
+//                     },
+//                     child: SuCoWidgetMarker(attributes: item.properties!),
+//                   ),
+//                 ),
+//               );
+//             }
+//             break;
+//           case LayerEnum.nenTramTrungThe:
+//             if (item.geometryPylygon != null) {
+//               _polygons.add(
+//                 Polygon(
+//                     points: item.geometryPylygon!.coordinates.first,
+//                     borderStrokeWidth: 2,
+//                     color: Colors.blue.withAlpha(150),
+//                     borderColor: Colors.grey),
+//               );
+//             }
+//             break;
+//           case LayerEnum.diemSuDungDien:
+//             if (item.geometryPoint != null) {
+//               _markers.add(
+//                 Marker(
+//                   rotate: true,
+//                   width: 150.0,
+//                   height: 40.0,
+//                   point: item.geometryPoint!.coordinates,
+//                   builder: (ctx) => GestureDetector(
+//                       onTap: () async {
+//                         await MapUtils.animatedMapMove(this, mapController,
+//                             item.geometryPoint!.coordinates, 17);
+//                         if (item.properties != null) {
+//                           if (kDebugMode) {
+//                             print(item.properties);
+//                           }
+//                           MapUtils.showInfor(
+//                               context,
+//                               _dto.layerId!,
+//                               item.properties!,
+//                               item.geometryPoint!.coordinates);
+//                         }
+//                       },
+//                       child: SuCoWidgetMarker(attributes: item.properties!)),
+//                 ),
+//               );
+//             }
+//             break;

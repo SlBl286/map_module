@@ -163,16 +163,23 @@ class TramBienApPopup extends StatelessWidget {
                       attributes['CONGSUAT'] == null
                           ? getImageAsset('map/tram_bien_ap/other.png')
                           : (attributes['CONGSUAT'] is int
-                            ? attributes['CONGSUAT'] as int
-                            : int.tryParse(attributes['CONGSUAT'] as String)) == 110
+                                      ? attributes['CONGSUAT'] as int
+                                      : int.tryParse(
+                                          attributes['CONGSUAT'] as String)) ==
+                                  110
                               ? getImageAsset('map/tram_bien_ap/110.png')
                               : (attributes['CONGSUAT'] is int
-                            ? attributes['CONGSUAT'] as int
-                            : int.tryParse(attributes['CONGSUAT'] as String)) == 220
+                                          ? attributes['CONGSUAT'] as int
+                                          : int.tryParse(attributes['CONGSUAT']
+                                              as String)) ==
+                                      220
                                   ? getImageAsset('map/tram_bien_ap/220.png')
                                   : (attributes['CONGSUAT'] is int
-                            ? attributes['CONGSUAT'] as int
-                            : int.tryParse(attributes['CONGSUAT'] as String)) == 500
+                                              ? attributes['CONGSUAT'] as int
+                                              : int.tryParse(
+                                                  attributes['CONGSUAT']
+                                                      as String)) ==
+                                          500
                                       ? getImageAsset(
                                           'map/tram_bien_ap/500.png')
                                       : getImageAsset(
@@ -1722,6 +1729,151 @@ class SuCoPopup extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class MarkerPopup extends StatelessWidget {
+  Map<String, dynamic> attributes;
+  MarkerPopup({Key? key, required this.attributes}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      children: [
+        Container(
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+          child: SingleChildScrollView(
+              child: Column(children: [
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colors.black.withOpacity(0.13),
+                ),
+                borderRadius: BorderRadius.all(Radius.circular(5.0)),
+              ),
+              child: Column(
+                  children: attributes.entries
+                      .map((map) => _OddRow(text: map.key, title: map.value))
+                      .toList()),
+            ),
+          ])),
+        ),
+        TextButton(
+          child: Container(
+            width: MediaQuery.of(context).size.width - 40,
+            height: 50,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  colors: [Colors.blue.shade700, Colors.red.shade600],
+                  begin: const FractionalOffset(0.0, 0.0),
+                  end: const FractionalOffset(0.6, 0.6),
+                  stops: const [0.0, 1.0],
+                  tileMode: TileMode.clamp),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "Hiển thị trên bản đồ",
+                  style: TextStyle(color: lightColors.background, fontSize: 17),
+                ),
+              ],
+            ),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        )
+      ],
+    );
+  }
+}
+
+class _OddRow extends StatelessWidget {
+  String title;
+  String text;
+  _OddRow({Key? key, required this.text, required this.title})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(8.0),
+      alignment: Alignment.centerLeft,
+      height: 40,
+      decoration: BoxDecoration(
+        color: Color(0xffeceff1),
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(5), topRight: Radius.circular(5)),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+          ),
+          Text(
+            text,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _EvenRow extends StatelessWidget {
+  String title;
+  String text;
+  _EvenRow({Key? key, required this.text, required this.title})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(8.0),
+      alignment: Alignment.centerLeft,
+      height: 40,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(5), topRight: Radius.circular(5)),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            title,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400),
+          ),
+          Text(
+            text,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class DividerWidget extends StatelessWidget {
+  const DividerWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: Container(
+        decoration: BoxDecoration(
+          border:
+              Border(bottom: BorderSide(color: Theme.of(context).dividerColor)),
+          // borderRadius: BorderRadius.circular(12),
+        ),
+      ),
     );
   }
 }

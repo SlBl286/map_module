@@ -17,7 +17,7 @@ class Feature {
       this.properties});
   factory Feature.fromJson(Map<String, dynamic> json) {
     return Feature(
-      type: json['type'],
+      type:  json['geometry'] != null ? json['geometry']['type']: json['type'],
       id: json['id'] as int,
       geometryPoint: json['geometry'] != null
           ? (json['geometry'] as Map)['type'] == FeatureType.point && (json['geometry'] as Map)['coordinates'].length >0
